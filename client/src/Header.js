@@ -28,7 +28,7 @@ export default function Header() {
   return (
     <header>
       <Link to="/" className="logo" >
-        <div className="title9">Memoirz</div></Link>
+        <div className="title9">WoofWoof!!</div></Link>
       <nav>
         {username && (
           <>

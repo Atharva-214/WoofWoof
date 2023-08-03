@@ -22,9 +22,11 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 mongoose.connect('mongodb+srv://atharva:atharva123@cluster0.0l3siag.mongodb.net/atharvaapp');
 
 app.post('/register', async (req, res) => {
-  const { username, password } = req.body;
+  const { firstname,lastname,username, password } = req.body;
   try {
     const userDoc = await User.create({
+      firstname,
+      lastname,
       username,
       password: bcrypt.hashSync(password, salt),
     });
@@ -81,10 +83,12 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
       return res.status(401).json('Invalid or expired token.');
     }
 
-    const { title, summary, content } = req.body;
+    const { title, summary, content, breed, gender,age, vaccinated } = req.body;
     const postDoc = await Post.create({
       title,
       summary,
+      breed,
+      gender,age, vaccinated,
       content,
       cover: newPath,
       author: info.id,
@@ -109,7 +113,7 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
       return res.status(401).json('Invalid or expired token.');
     }
 
-    const { id, title, summary, content } = req.body;
+    const { id, title, summary, breed,  gender,age, vaccinated, content } = req.body;
     const postDoc = await Post.findById(id);
     const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
     if (!isAuthor) {
@@ -118,6 +122,7 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
     await postDoc.updateOne({
       title,
       summary,
+      breed, gender,age, vaccinated,
       content,
       cover: newPath ? newPath : postDoc.cover,
     });
@@ -127,11 +132,12 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
 });
 
 
+//route handler
 app.get('/post', async (req, res) => {
   res.json(
     await Post.find()
       .populate('author', ['username'])
-      .sort({ createdAt: -1 })
+      .sort({ createdAt: 1 })
       .limit(20)
   );
 });

@@ -1,6 +1,5 @@
 import {useContext, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {formatISO9075} from "date-fns";
 import {UserContext} from "../UserContext";
 import {Link} from 'react-router-dom';
 
@@ -30,10 +29,11 @@ export default function PostPage() {
 
   return (
     <div className="post-page">
-      <h1>{postInfo.title}</h1>
+      <h1></h1>
+      <h1>Hi! This is {postInfo.title}🐾</h1>
       <time>{formatDate(postInfo.createdAt)}</time>
       {/* <h1>{postInfo.title}</h1> */}
-      <div className="author">by @{postInfo.author.username}</div>
+      <div className="author">Parent: {postInfo.author.firstname || 'UserXYZ'} {postInfo.author.lastname || ''}</div>
       {userInfo.id === postInfo.author._id && (
         <div className="edit-row">
           <Link className="edit-btn" to={`/edit/${postInfo._id}`}>
@@ -44,21 +44,38 @@ export default function PostPage() {
           </Link>
         </div>
       )}
+      {/* voivihrvoherqovhqerov */}
+      {/* swiuchwiuvhqweiuvphqeuivhperuvheriuvberiuv */}
       <div className="image">
         <img src={`http://localhost:4000/${postInfo.cover}`} alt=""/>
       </div>
       <div className="aboutdog">
-        <div className="basicinfo">
-          <h2>Basic Information</h2>
-            <h3>Breed</h3><h5>{postInfo.title}</h5>
-            <h3>Gender</h3><h5>{postInfo.title}</h5>
-            <h3>Age</h3><h5>{postInfo.title}</h5>
-            <h3>Vaccinated</h3><h5>{postInfo.title}</h5>
-        </div>
+      <div className="basicinfo" >
+        <h2>Basic Information</h2>
+  <table>
+    <tbody>
+      <tr>
+        <td className="bold-cell">Breed</td>
+        <td>{postInfo.breed}</td>
+      </tr>
+      <tr>
+        <td className="bold-cell">Gender</td>
+        <td>{postInfo.gender}</td>
+      </tr>
+      <tr>
+        <td className="bold-cell">Age</td>
+        <td>{postInfo.age}</td>
+      </tr>
+      <tr>
+        <td className="bold-cell">Vaccinated</td>
+        <td>{postInfo.vaccinated ? 'Yes' : 'No'}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-
-        <h2>More About {postInfo.title}</h2>
       </div>
+        <h2>More About {postInfo.title}</h2>
       <div className="content" dangerouslySetInnerHTML={{__html:postInfo.content}} />
     </div>
   );

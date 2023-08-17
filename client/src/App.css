@@ -15,27 +15,31 @@ main{
     max-width: 960px;
     margin: 0 auto;
 }
-
-header{
+.bold-cell {
+    font-size:large;
+    font-weight: bold;
+  }
+  
+/* header{
     display:flex;
     justify-content:space-between;
     margin-top: 20px;
     margin-bottom: 50px;
     align-items: center;
-}
-header a{
+} */
+/* header a{
     text-decoration:none;
     color: inherit;
 }
 header a.logo{
-    /* font-family: 'Brush Script MT'; */
+    /* font-family: 'Brush Script MT'; 
     font-weight: bold;
     font-size: 2rem;
 }
-header nav{
+header{
     display:flex;
     gap: 24px;
-}
+} */
 
 div.post{
     display: grid;
@@ -57,8 +61,24 @@ div.post div.texts a{
     text-decoration:none;
     color: inherit;
 }
+div.post div.t{
+    margin:2px 0;
+    color: #6f6f6f;
+    font-size:0.9rem;
+    /* font-weight: bold; */
+    display: flex;
+    gap: 10px;
+}
+div.post div.basics{
+    margin:8px 0;
+    color: #888;
+    font-size:1rem;
+    font-weight: bold;
+    display: flex;
+    gap: 10px;
+}
 div.post p.info{
-    margin:24px 0;
+    margin:0px 0;
     color: #888;
     font-size:1rem;
     font-weight: bold;
@@ -66,7 +86,8 @@ div.post p.info{
     gap: 10px;
 }
 div.post p.info a.author{
-    color:#333;
+    color:#000000;
+    /* font-size: large; */
 }
 div.post p.summary{
     margin:10px 0;
@@ -90,7 +111,7 @@ button{
     cursor: pointer;
     width: 100%;
     display: block;
-    background-color: #af1616;
+    background-color: #5d69b8;
     border:0;
     color: #fff;
     border-radius: 5px;
@@ -100,30 +121,27 @@ form.login h1, form.register h1{
     text-align: center;
 }
 
-/* Styles for the image container */
-div.image 
-    {
-        position: relative;
-        width: 300px; /* Adjust the width of the square container as needed */
-        height: 200px; /* The same value as the width to make it a square */
-        overflow: hidden;
-        border: 2px solid #000;
-      }
+
   
+  /* Style for the image container */
+  div.image {
+    position: relative;
+    width: 300px; /* Adjust the width of the square container as needed */
+    height: 200px; /* The same value as the width to make it a square */
+    overflow: hidden;
+    border: 2px solid #000;
+  }
   
   /* Styles for the image inside the container */
   div.image img {
-    /* width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    width: 100%; */
-  height: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
+  
+  
   
 div.post-page a{
     color:#333;
@@ -137,17 +155,17 @@ div.post-page time{
     text-align: center;
     display: block;
     font-size:1rem;
-    color:#aaa;
+    color:#843131;
     margin: 10px 0;
 }
 div.post-page div.author{
     text-align: center;
     margin-bottom: 20px;
-    font-size: .7rem;
+    font-size: 1rem;
     font-weight: bold;
 }
 div.content p{
-    line-height: 1.7rem;
+    line-height: 2rem;
     margin: 30px 0;
 }
 div.content li{
@@ -161,7 +179,7 @@ div.post-page a.edit-btn{
     background-color: #333;
     display: inline-flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
     color: #fff;
     padding:15px 30px;
     border-radius: 5px;

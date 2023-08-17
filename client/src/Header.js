@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {UserContext} from "./UserContext";
-
+import "./topbar.css";
 export default function Header() {
   const {setUserInfo,userInfo} = useContext(UserContext);
   useEffect(() => {
@@ -27,7 +27,70 @@ export default function Header() {
 
   return (
     <header>
-      <Link to="/" className="logo" >
+      <div className="top">
+      <div className="topLeft">
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+      <i className="topIcon fab fa-facebook-square"></i>
+    </a>
+<a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+    <i className="topIcon fab fa-instagram-square"></i>
+  </a>
+  {/* <a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer">
+    <i className="topIcon fab fa-pinterest-square"></i>
+  </a> */}
+  <a href="https://www.twitter.com/" target="_blank" rel="noopener noreferrer">
+    <i className="topIcon fab fa-twitter-square"></i>
+  </a>
+      </div>
+      <div className="topCenter">
+        <ul className="topList">
+          <li className="topListItem">
+            <Link className="link title9" to="/">
+              <h3 >WoofWoof!</h3>
+            </Link>
+          </li>
+          {/* <li className="topListItem">
+          <Link className="link title9" to="/about">
+              ABOUT
+            </Link>
+          </li>
+          <li className="topListItem">
+          <Link className="link title9"  to="/about">
+              CONTACT
+            </Link>
+          </li> */}
+          {username && <li className="topListItem">
+            <Link className="link title9" to="/create" >
+              ADD
+            </Link>
+          </li>}
+          {username && <li className="topListItem" onClick={logout}>LOGOUT</li>}
+        </ul>
+      </div>
+      <div className="topRight">
+        {!username && (
+          <ul className="topList">
+            <li className="topListItem">
+              <Link className="link" to="/login">
+                LOGIN
+              </Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/register">
+                REGISTER
+              </Link>
+            </li>
+          </ul>
+        )}
+        <i className="topSearchIcon fas fa-search"></i>
+      </div>
+      </div>
+      
+    </header>
+  );
+}
+
+{/* <Link to="/" className="logo" >
         <div className="title9">WoofWoof!!</div></Link>
       <nav>
         {username && (
@@ -42,7 +105,4 @@ export default function Header() {
             <Link to="/register">Register</Link>
           </>
         )}
-      </nav>
-    </header>
-  );
-}
+      </nav> */}

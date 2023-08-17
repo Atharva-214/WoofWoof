@@ -19,7 +19,17 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-mongoose.connect('mongodb+srv://atharva:atharva123@cluster0.0l3siag.mongodb.net/atharvaapp');
+// mongoose.connect('mongodb+srv://atharva:atharva123@cluster0.0l3siag.mongodb.net/atharvaapp');
+
+mongoose.connect('mongodb+srv://Atharva:Atharva@dogcluster.3kmr4qh.mongodb.net/atharvaapp')// if error it will throw async error
+    .then(() => { // if all is ok we will be here
+      console.log("db connected");
+        // return server.start();
+    })
+    .catch(err => { // we will not be here...
+        console.error('App starting error:', err.stack);
+        process.exit(1);
+    });
 
 app.post('/register', async (req, res) => {
   const { firstname,lastname,username, password } = req.body;
@@ -137,16 +147,18 @@ app.get('/post', async (req, res) => {
   res.json(
     await Post.find()
       .populate('author', ['username'])
-      .sort({ createdAt: 1 })
+      .sort({ createdAt: -1 })
       .limit(20)
   );
 });
 
 app.get('/post/:id', async (req, res) => {
   const { id } = req.params;
-  const postDoc = await Post.findById(id).populate('author', ['username']);
+  const postDoc = await Post.findById(id).populate('author',['firstname','username','lastname']);
+  // const post = await Post.findById(id).populate('author', ['firstname']);
+  // res.json(post);
   res.json(postDoc);
 })
 
-app.listen(4000);
+app.listen(4000,console.log("server started running"));
 //

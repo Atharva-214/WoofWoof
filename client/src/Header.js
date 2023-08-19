@@ -46,7 +46,7 @@ export default function Header() {
         <ul className="topList">
           <li className="topListItem">
             <Link className="link title9" to="/">
-              <h3 >WoofWoof!</h3>
+              WoofWoof!
             </Link>
           </li>
           {/* <li className="topListItem">

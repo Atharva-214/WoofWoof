@@ -5,19 +5,7 @@ const PostSchema = new Schema({
   title:String,
   summary:String,
   breed: String,
-  vaccinated: {
-    type: Boolean,
-    default: false,
-    set: function(value) {
-      if (value === 'yes') {
-        return true;
-      } else if (value === 'no') {
-        return false;
-      } else {
-        return value; 
-      }
-    },
-  },
+  vaccinated: String,
   age: Number,
   gender: String,
   content:String,
